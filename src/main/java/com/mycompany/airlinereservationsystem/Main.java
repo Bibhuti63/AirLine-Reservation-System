@@ -4,6 +4,10 @@
  */
 package com.mycompany.airlinereservationsystem;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author biswa
@@ -111,10 +115,14 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-        addCustomer cus=new addCustomer();
-        jDesktopPane1.add(cus);
-        cus.setVisible(true);
+        try {
+            // TODO add your handling code here:
+            addCustomer cus=new addCustomer();
+            jDesktopPane1.add(cus);
+            cus.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
