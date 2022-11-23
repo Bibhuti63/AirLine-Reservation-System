@@ -232,7 +232,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("Add");
+        jButton2.setText("Update");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -267,22 +267,23 @@ public class searchCustomer extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(txtphoto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)
+                                .addGap(14, 14, 14))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
                         .addComponent(jButton2)
-                        .addGap(75, 75, 75)
+                        .addGap(60, 60, 60)
                         .addComponent(jButton3)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(txtphoto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addGap(14, 14, 14)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -298,7 +299,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton2)
                             .addComponent(jButton3)))
@@ -343,7 +344,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-//        String id=txtid.getText();
+        String id=txtcustid.getText();
         String firstname=txtfirstname.getText();
         String lastname=txtlastname.getText();
         String aadhar=txtaadhar.getText();
@@ -367,22 +368,23 @@ public class searchCustomer extends javax.swing.JInternalFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con=DriverManager.getConnection("jdbc:mysql://localhost/airlinereservationsystem","root","");
-            pst=con.prepareStatement("insert into customer(id,firstname,lastname,aadhar,passport,address,dob,gender,contact,photo)values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-//            pst.setString(1,id);
-            pst.setString(2,firstname);
-            pst.setString(3,lastname);
-            pst.setString(4,aadhar);
-            pst.setString(5,passport);
-            pst.setString(6,address);
-            pst.setString(7,date);
-            pst.setString(8,Gender);
-            pst.setString(9,contact);
+            pst=con.prepareStatement("update customer set firstname=?,lastname=?,aadhar=?,passport=?,address=?,dob=?,gender=?,contact=?,photo=? where id=?");
+
+            pst.setString(1,firstname);
+            pst.setString(2,lastname);
+            pst.setString(3,aadhar);
+            pst.setString(4,passport);
+            pst.setString(5,address);
+            pst.setString(6,date);
+            pst.setString(7,Gender);
+            pst.setString(8,contact);
             
-            pst.setBytes(10,userimage);
+            pst.setBytes(9,userimage);
+            pst.setString(10,id);
             
             pst.executeUpdate();
             
-            JOptionPane.showMessageDialog(null,"Registration Created");
+            JOptionPane.showMessageDialog(null,"Registration Updated...");
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(searchCustomer.class.getName()).log(Level.SEVERE, null, ex);
