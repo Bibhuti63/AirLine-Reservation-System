@@ -49,8 +49,6 @@ public class addFlight extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtflightname = new javax.swing.JTextField();
-        txtsource = new javax.swing.JTextField();
-        txtdest = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -61,6 +59,8 @@ public class addFlight extends javax.swing.JInternalFrame {
         txtcharge = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        txtsource = new javax.swing.JComboBox<>();
+        txtdest = new javax.swing.JComboBox<>();
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -121,6 +121,10 @@ public class addFlight extends javax.swing.JInternalFrame {
             }
         });
 
+        txtsource.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D", "E", "F" }));
+
+        txtdest.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D", "E", "F", " " }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -136,8 +140,8 @@ public class addFlight extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtflightid)
                     .addComponent(txtflightname, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
-                    .addComponent(txtsource)
-                    .addComponent(txtdest))
+                    .addComponent(txtsource, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtdest, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(99, 99, 99)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
@@ -193,7 +197,7 @@ public class addFlight extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(txtdest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -264,8 +268,8 @@ public class addFlight extends javax.swing.JInternalFrame {
         
         String id=txtflightid.getText();
         String flightname=txtflightname.getText();
-        String source=txtsource.getText();
-        String destination=txtdest.getText();
+        String source=txtsource.getSelectedItem().toString().trim();
+        String destination=txtdest.getSelectedItem().toString().trim();
   
         DateFormat da=new SimpleDateFormat("yyyy-MM-dd");
         String date=da.format(txtdate.getDate());
@@ -322,9 +326,9 @@ public class addFlight extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtcharge;
     private com.toedter.calendar.JDateChooser txtdate;
     private javax.swing.JTextField txtdeparttime;
-    private javax.swing.JTextField txtdest;
+    private javax.swing.JComboBox<String> txtdest;
     private javax.swing.JLabel txtflightid;
     private javax.swing.JTextField txtflightname;
-    private javax.swing.JTextField txtsource;
+    private javax.swing.JComboBox<String> txtsource;
     // End of variables declaration//GEN-END:variables
 }
