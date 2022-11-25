@@ -111,6 +111,11 @@ public class Main extends javax.swing.JFrame {
         jMenu4.setText("User");
 
         jMenuItem5.setText("New User");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem5);
 
         jMenuBar1.add(jMenu4);
@@ -187,6 +192,17 @@ public class Main extends javax.swing.JFrame {
         jDesktopPane1.add(tr);
         tr.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        try {
+            // TODO add your handling code here:
+            userCreation u=new userCreation();
+            jDesktopPane1.add(u);
+            u.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
